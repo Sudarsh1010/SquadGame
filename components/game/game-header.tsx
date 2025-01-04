@@ -1,5 +1,4 @@
 import { ButtonBackground } from './svgs/button-background'
-import { ProfileBackground } from './svgs/profile-background'
 
 export function GameHeader() {
   return (
@@ -13,7 +12,7 @@ export function GameHeader() {
           <div className=" flex items-center px-3">
             <svg className="w-10 h-10"  width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <rect width="23" height="24" fill="url(#pattern0_3044_19)"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 19.135V17.5C7 15.567 8.567 14 10.5 14C12.433 14 14 15.567 14 17.5V19.135C16.3789 17.8775 18 15.378 18 12.5C18 8.35786 14.6421 5 10.5 5C6.35786 5 3 8.35786 3 12.5C3 15.378 4.6211 17.8775 7 19.135ZM13 10.5C13 11.8807 11.8807 13 10.5 13C9.11929 13 8 11.8807 8 10.5C8 9.11929 9.11929 8 10.5 8C11.8807 8 13 9.11929 13 10.5Z" fill="#40F4FF" fill-opacity="0.5"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M7 19.135V17.5C7 15.567 8.567 14 10.5 14C12.433 14 14 15.567 14 17.5V19.135C16.3789 17.8775 18 15.378 18 12.5C18 8.35786 14.6421 5 10.5 5C6.35786 5 3 8.35786 3 12.5C3 15.378 4.6211 17.8775 7 19.135ZM13 10.5C13 11.8807 11.8807 13 10.5 13C9.11929 13 8 11.8807 8 10.5C8 9.11929 9.11929 8 10.5 8C11.8807 8 13 9.11929 13 10.5Z" fill="#40F4FF" fillOpacity="0.5"/>
               <defs>
               <pattern id="pattern0_3044_19" patternContentUnits="objectBoundingBox" width="1" height="1">
               <use xlinkHref="#image0_3044_19" transform="matrix(0.00205799 0 0 0.00210177 -1.18461 -1.75802)"/>

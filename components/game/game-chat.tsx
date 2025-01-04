@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ChatBubble } from './svgs/chat-bubble'
-import { InputBoxBackground } from './svgs/input-box-background'
 import { Paperclip, Send } from 'lucide-react'
 import { sendMessage } from '@/libs/api'
 
@@ -14,15 +12,15 @@ interface Message {
 }
 
 const dummyMessages: Message[] = [
-  { id: 1, text: "Welcome to Squad Game!", username: "System", isUser: false },
-  { id: 2, text: "Hey everyone, ready to play?", username: "Player123", isUser: false },
-  { id: 3, text: "Let's do this!", username: "Player456", isUser: true },
+  { id: 1, text: "Welcome to Squad Game!", username: "014", isUser: false },
+  { id: 2, text: "Hey everyone, ready to play?", username: "123", isUser: false },
+  { id: 3, text: "Let's do this!", username: "456", isUser: true },
 ];
 
 export function GameChat() {
   const [messages, setMessages] = useState<Message[]>(dummyMessages);
   const [inputMessage, setInputMessage] = useState('');
-  const [username, setUsername] = useState('Player456');
+  const [username, setUsername] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -40,6 +38,8 @@ export function GameChat() {
       username: username,
       isUser: true,
     };
+
+    setUsername("666")
 
     setMessages(prevMessages => [...prevMessages, newMessage]);
     setInputMessage('');
