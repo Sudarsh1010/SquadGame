@@ -87,8 +87,8 @@ export function GameChat() {
             <div
               className={`relative px-2 text-xs font-bold text-center ${
                 message.isUser
-                  ? 'bg-[#00FFFF]/80 self-end'
-                  : 'bg-[#00FFFF]/80 self-start'
+                  ? 'bg-[#00FFFF]/80 self-end mr-2'
+                  : 'bg-[#00FFFF]/80 self-start ml-2'
               }`}
               style={{
                 clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)',
@@ -99,11 +99,12 @@ export function GameChat() {
         
             {/* Message bubble */}
             <div
-              className={"px-4 py-2"} 
+              className={`px-4 py-2 ${message.text.length > 50 ? 'pb-8' : 'pb-4'} break-all`} 
               style={{
                 backgroundImage: message.isUser ? 'url("/chatMe.png")' : 'url("/chatAll.png")',
                 backgroundSize: '100% 100%',
                 backgroundRepeat: 'no-repeat',
+                wordWrap: 'break-word'
               }}
             >
               <span className="block text-[#45F0FF]">{message.text}</span>
