@@ -1,3 +1,6 @@
+'use client'
+
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { ButtonBackground } from './svgs/button-background'
 import { UserIcon } from './svgs/user-icon'
 
@@ -18,9 +21,10 @@ export function GameHeader() {
 
         <div className="relative">
           <ButtonBackground className="text-[#FF1493] w-[260px] py-2 px-4" />
-          <button className="absolute inset-0 text-[#00CCCC] hover:text-[#45F0FF] transition-colors">
+          <WalletMultiButton />
+          {/* <button className="absolute inset-0 text-[#00CCCC] hover:text-[#45F0FF] transition-colors">
             Connect Wallet
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
