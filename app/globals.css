@@ -18,3 +18,8 @@
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
+.chat-input-glow {
+  box-shadow: 0 0 10px rgba(69, 240, 255, 0.2),
+              0 0 20px rgba(69, 240, 255, 0.1);
+}
