@@ -1,4 +1,4 @@
-export function UserIcon({ className = "" }) {
+export function UserIcon() {
     return (
         <svg className="w-10 h-10"  width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="23" height="24" fill="url(#pattern0_3044_19)"/>
