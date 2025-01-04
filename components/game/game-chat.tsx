@@ -14,7 +14,7 @@ interface Message {
 const dummyMessages: Message[] = [
   { id: 1, text: "Welcome to Squad Game!", username: "014", isUser: false },
   { id: 2, text: "Hey everyone, ready to play?", username: "123", isUser: false },
-  { id: 3, text: "Let's do this!", username: "456", isUser: true },
+  { id: 3, text: "Let's do this!", username: "456", isUser: false },
 ];
 
 export function GameChat() {
@@ -75,24 +75,38 @@ export function GameChat() {
       >
         {messages.map((message) => (
           <div
-            key={message.id}
-            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-          >
-            <div className="max-w-md">
-              <div
-                className={`px-4 py-2 rounded-lg ${
-                  message.isUser
-                    ? 'bg-[#45F0FF]/10 text-[#45F0FF]'
-                    : 'bg-[#FF1493]/10 text-[#FF1493]'
-                }`}
-              >
-                <span className="block text-xs font-medium mb-1">
-                  {message.username}
-                </span>
-                <span className="block">{message.text}</span>
-              </div>
+          key={message.id}
+          className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-4`}
+        >
+          <div className="flex flex-col items-start">
+            {/* Username tag */}
+            <div
+              className={`relative px-2 text-xs font-bold text-center ${
+                message.isUser
+                  ? 'bg-[#00FFFF]/80 self-end'
+                  : 'bg-[#00FFFF]/80 self-start'
+              }`}
+              style={{
+                clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)',
+              }}
+            >
+              {message.username}
+            </div>
+        
+            {/* Message bubble */}
+            <div
+              className={"px-4 py-2"} 
+              style={{
+                backgroundImage: message.isUser ? 'url("/chatMe.png")' : 'url("/chatAll.png")',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              <span className="block text-[#45F0FF]">{message.text}</span>
             </div>
           </div>
+        </div>
+        
         ))}
         <div ref={messagesEndRef} />
       </div>
@@ -140,3 +154,31 @@ export function GameChat() {
   )
 }
 
+
+      // <div
+      //   className="relative flex-1 mt-16 ml-4 overflow-y-auto scrollbar-thin scrollbar-thumb-[#45F0FF]/20 scrollbar-track-transparent px-4 space-y-4"
+      // >
+      //   {messages.map((message) => (
+      //     <div
+      //       key={message.id}
+      //       className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+      //     >
+      //       <div className="max-w-md">
+      //           <span className="block text-xs font-medium mb-1">
+      //             {message.username}
+      //           </span>
+      //         <div
+      //           className={"px-4 py-2"} 
+      //           style={{
+      //             backgroundImage: message.isUser ? 'url("/chatAll.png")' : 'url("/chatMe.png")',
+      //             backgroundSize: '100% 100%',
+      //             backgroundRepeat: 'no-repeat',
+      //           }}
+      //         >
+      //           <span className="block text-[#45F0FF]">{message.text}</span>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   ))}
+      //   <div ref={messagesEndRef} />
+      // </div>
