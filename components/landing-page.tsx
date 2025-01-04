@@ -10,7 +10,7 @@ export function LandingPage() {
       <div className="relative">
         {/* Corner Icons around the content */}
         <motion.div 
-          className="absolute top-[-5rem] left-[-5rem] -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-[-3rem] left-[-3rem] -translate-x-1/2 -translate-y-1/2"
           exit={{ x: -100, y: -100 }}
           transition={{ duration: 0.3 }}
         >
@@ -22,7 +22,7 @@ export function LandingPage() {
           </motion.div>
         </motion.div>
         <motion.div 
-          className="absolute top-[-10rem] right-[-10rem] translate-x-1/2 -translate-y-1/2"
+          className="absolute top-[-3rem] right-[-3rem] translate-x-1/2 -translate-y-1/2"
           exit={{ x: 100, y: -100 }}
           transition={{ duration: 0.3 }}
         >
@@ -33,7 +33,7 @@ export function LandingPage() {
           </motion.div>
         </motion.div>
         <motion.div 
-          className="absolute bottom-[-10rem] left-[-10rem] -translate-x-1/2 translate-y-1/2"
+          className="absolute bottom-[-3rem] left-[-3rem] -translate-x-1/2 translate-y-1/2"
           exit={{ x: -100, y: 100 }}
           transition={{ duration: 0.3 }}
         >
@@ -45,7 +45,7 @@ export function LandingPage() {
           </motion.div>
         </motion.div>
         <motion.div 
-          className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2"
+          className="absolute bottom-[-3rem] right-[-3rem] translate-x-1/2 translate-y-1/2"
           exit={{ x: 100, y: 100 }}
           transition={{ duration: 0.3 }}
         >
