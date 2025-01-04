@@ -4,8 +4,16 @@ import { GameGrid } from '@/components/game/game-grid'
 import { GameChat } from '@/components/game/game-chat'
 import { GameHeader } from '@/components/game/game-header'
 import { BackgroundDecoration } from '@/components/game/background-decoration'
+import { useEffect, useState } from 'react'
+import { checkAuth } from '../actions'
 
 export default function GamePage() {
+  const [token, setToken] = useState<string | null>(null)
+  
+  useEffect(() => {
+    checkAuth().then((token) => { setToken(token) })
+  }, [])
+
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden">
       <BackgroundDecoration />
@@ -16,7 +24,7 @@ export default function GamePage() {
             <GameGrid />
           </div>
           <div className="w-1/4">
-            <GameChat />
+            <GameChat authToken={token} />
           </div>
         </div>
       </div>
