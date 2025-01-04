@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Paperclip, Send } from 'lucide-react'
 import { sendMessage } from '@/libs/api'
+import { UserIcon } from './svgs/user-icon';
 
 interface Message {
   id: number;
@@ -14,7 +15,7 @@ interface Message {
 const dummyMessages: Message[] = [
   { id: 1, text: "Welcome to Squad Game!", username: "014", isUser: false },
   { id: 2, text: "Hey everyone, ready to play?", username: "123", isUser: false },
-  { id: 3, text: "Let's do this!", username: "456", isUser: false },
+  { id: 3, text: "Let's do this!", username: "666", isUser: true },
 ];
 
 export function GameChat() {
@@ -78,6 +79,9 @@ export function GameChat() {
           key={message.id}
           className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-4`}
         >
+          {!message.isUser && <div>
+          <UserIcon />
+          </div>}
           <div className="flex flex-col items-start">
             {/* Username tag */}
             <div
