@@ -3,6 +3,7 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { ButtonBackground } from './svgs/button-background'
 import { UserIcon } from './svgs/user-icon'
+import { Weight } from "lucide-react";
 
 export function GameHeader() {
   return (
@@ -21,7 +22,15 @@ export function GameHeader() {
 
         <div className="relative">
           <ButtonBackground className="text-[#FF1493] w-[260px] py-2 px-4" />
-          <WalletMultiButton />
+            <div className="absolute inset-0 text-[#00CCCC] hover:text-[#45F0FF] transition-colors">
+              <WalletMultiButton style={{
+                marginLeft: 30,
+                fontWeight: 200,
+                color: "#00CCCC",
+                backgroundColor: 'transparent',
+              }} />
+            </div>
+            
           {/* <button className="absolute inset-0 text-[#00CCCC] hover:text-[#45F0FF] transition-colors">
             Connect Wallet
           </button> */}
