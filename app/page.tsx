@@ -1,25 +1,49 @@
 'use client'
 
-import { GameGrid } from '@/components/game/game-grid'
-import { GameChat } from '@/components/game/game-chat'
-import { GameHeader } from '@/components/game/game-header'
-import { BackgroundDecoration } from '@/components/game/background-decoration'
+import { useState } from 'react'
+import { motion, AnimatePresence } from "framer-motion"
+import { PageWrapper } from '@/components/page-wrapper'
+import { LandingPage } from '@/components/landing-page'
+import { RulesPage } from '@/components/rules-page'
 
-export default function GamePage() {
+export default function SquadGame() {
+  const [showLanding, setShowLanding] = useState(true)
+
+  const handleInteraction = () => {
+    if (showLanding) {
+      setShowLanding(false)
+    }
+  }
+
   return (
-    <div className="relative h-screen w-full bg-black overflow-hidden">
-      <BackgroundDecoration />
-      <div className="relative z-10 h-full w-full">
-        <GameHeader />
-        <div className="flex h-[calc(100vh-4rem)] gap-4 p-6 pt-2 pb-12">
-          <div className="w-3/4">
-            <GameGrid />
-          </div>
-          <div className="w-1/4">
-            <GameChat />
-          </div>
-        </div>
-      </div>
+    <div 
+      className="cursor-pointer"
+      onClick={handleInteraction}
+      onKeyDown={handleInteraction}
+      tabIndex={0}
+    >
+      <AnimatePresence mode="wait">
+        {showLanding ? (
+          <PageWrapper key="landing" isLanding={true}>
+            <motion.div
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <LandingPage />
+            </motion.div>
+          </PageWrapper>
+        ) : (
+          <PageWrapper key="rules" isLanding={false}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
+              <RulesPage />
+            </motion.div>
+          </PageWrapper>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
