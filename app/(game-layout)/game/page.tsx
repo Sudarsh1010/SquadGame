@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import { GameGrid } from '@/components/game/game-grid'
-import { GameChat } from '@/components/game/game-chat'
-import { GameHeader } from '@/components/game/game-header'
-import { BackgroundDecoration } from '@/components/game/background-decoration'
-import { useEffect, useState } from 'react'
-import { checkAuth } from '../actions'
+import { GameGrid } from "@/components/game/game-grid";
+import { GameChat } from "@/components/game/game-chat";
+import { GameHeader } from "@/components/game/game-header";
+import { BackgroundDecoration } from "@/components/game/background-decoration";
+import { useEffect, useState } from "react";
+import { checkAuth } from "../../actions";
 
 export default function GamePage() {
-  const [token, setToken] = useState<string | null>(null)
-  
+  const [token, setToken] = useState<string | null>(null);
+
   useEffect(() => {
-    checkAuth().then((token) => { setToken(token) })
-  }, [])
+    checkAuth().then(setToken);
+  }, []);
 
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden">
@@ -29,6 +29,5 @@ export default function GamePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
