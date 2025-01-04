@@ -3,7 +3,6 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { ButtonBackground } from './svgs/button-background'
 import { UserIcon } from './svgs/user-icon'
-import { Weight } from "lucide-react";
 
 export function GameHeader() {
   return (

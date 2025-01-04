@@ -71,7 +71,7 @@ export function LandingPage() {
 
       {/* Bottom glitch text */}
       <div className="absolute bottom-8 flex flex-col justify-center items-center">
-          <svg className="" width="128" height="128" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" onClick={() => window.location.href='https://www.google.com'}>
+          <svg className="" width="128" height="128" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" onClick={() => window.location.href='https://sendarcade.fun/'}>
             <rect x="16" y="20" width="31" height="25" fill="url(#pattern0_1162_1011)" fillOpacity="0.8"/>
             <defs>
             <pattern id="pattern0_1162_1011" patternContentUnits="objectBoundingBox" width="1" height="1">
