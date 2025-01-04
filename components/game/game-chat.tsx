@@ -2,26 +2,21 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Paperclip, Send } from 'lucide-react'
-import { sendMessage } from '@/libs/api'
+import { getLobbyMessages, sendMessage } from '@/libs/api'
 import { UserIcon } from './svgs/user-icon';
 
+
 interface Message {
-  id: number;
-  text: string;
-  username: string;
-  isUser: boolean;
+  _id: string;
+  content: string;
+  sender: string;
+  timestamp: string;
 }
 
-const dummyMessages: Message[] = [
-  { id: 1, text: "Welcome to Squad Game!", username: "014", isUser: false },
-  { id: 2, text: "Hey everyone, ready to play?", username: "123", isUser: false },
-  { id: 3, text: "Let's do this!", username: "666", isUser: true },
-];
-
-export function GameChat() {
-  const [messages, setMessages] = useState<Message[]>(dummyMessages);
+export function GameChat({ authToken }: { authToken: string | null }) {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('666');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -29,29 +24,40 @@ export function GameChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  useEffect(() => {
+    async function fetchMessages() {
+      try {
+        if (!authToken) return;
+        const messages = await getLobbyMessages(authToken);
+        setMessages(messages);
+      } catch (error) {
+        console.error('Failed to fetch messages:', error);
+      }
+    }
+
+    fetchMessages();
+  }, [authToken]);
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const newMessage: Message = {
-      id: Date.now(),
-      text: inputMessage,
-      username: username,
-      isUser: true,
-    };
+    //const timestamp = new Date().toISOString();
+
+    //const newMessage: Message = {
+    //  _id: username + timestamp,
+    //  content: inputMessage,
+    //  sender: username,
+    //  timestamp: timestamp,
+    //};
 
     setUsername("666")
-
-    setMessages(prevMessages => [...prevMessages, newMessage]);
     setInputMessage('');
 
     try {
-      const response = await sendMessage(inputMessage, username);
-      setMessages(prevMessages => 
-        prevMessages === dummyMessages 
-          ? [newMessage, response] 
-          : [...prevMessages, response]
-      );
+      if (!authToken || !username || !inputMessage) return;
+      const response = await sendMessage(authToken, inputMessage, username);
+      setMessages(response.messages);
     } catch (error) {
       console.error('Failed to send message:', error);
     }
@@ -74,19 +80,19 @@ export function GameChat() {
       <div
         className="relative flex-1 mt-16 ml-4 overflow-y-auto scrollbar-thin scrollbar-thumb-[#45F0FF]/20 scrollbar-track-transparent px-4 space-y-4"
       >
-        {messages.map((message) => (
+        {messages && messages.map((message) => (
           <div
-          key={message.id}
-          className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-4`}
+          key={message._id}
+          className={`flex ${message.sender === username ? 'justify-end' : 'justify-start'} mb-4`}
         >
-          {!message.isUser && <div>
+          {!(message.sender === username) && <div>
           <UserIcon />
           </div>}
           <div className="flex flex-col items-start">
             {/* Username tag */}
             <div
               className={`relative px-2 text-xs font-bold text-center ${
-                message.isUser
+                message.sender === username
                   ? 'bg-[#00FFFF]/80 self-end mr-2'
                   : 'bg-[#00FFFF]/80 self-start ml-2'
               }`}
@@ -94,20 +100,20 @@ export function GameChat() {
                 clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)',
               }}
             >
-              {message.username}
+              {message.sender}
             </div>
         
             {/* Message bubble */}
             <div
-              className={`px-4 py-2 ${message.text.length > 50 ? 'pb-8' : 'pb-4'} break-all`} 
+              className={`px-4 py-2 ${message.content.length > 50 ? 'pb-8' : 'pb-4'} break-all`} 
               style={{
-                backgroundImage: message.isUser ? 'url("/chatMe.png")' : 'url("/chatAll.png")',
+                backgroundImage: message.sender === username ? 'url("/chatMe.png")' : 'url("/chatAll.png")',
                 backgroundSize: '100% 100%',
                 backgroundRepeat: 'no-repeat',
                 wordWrap: 'break-word'
               }}
             >
-              <span className="block text-[#45F0FF]">{message.text}</span>
+              <span className="block text-[#45F0FF]">{message.content}</span>
             </div>
           </div>
         </div>
